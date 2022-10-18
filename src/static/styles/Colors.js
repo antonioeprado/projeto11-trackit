@@ -4,7 +4,7 @@ export const mainColor = "#52B6FF";
 
 export const compColor = "#126BA5";
 
-export const darkDaySquareColor = "#126BA5";
+export const darkDaySquareColor = "#CFCFCF";
 
 export const placeHolderColor = "#DBDBDB";
 

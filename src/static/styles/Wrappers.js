@@ -22,4 +22,7 @@ export const StyledForm = styled.form`
 	& > * {
 		margin: 3px auto;
 	}
+	& > button {
+		margin: 3px auto;
+	}
 `;

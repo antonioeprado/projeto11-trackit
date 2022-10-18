@@ -1,7 +1,11 @@
 import styled from "styled-components";
 import { mainColor } from "./Colors";
 
-const Button = styled.div`
+const UnsetButton = styled.button`
+	all: unset;
+`;
+
+const Button = styled(UnsetButton)`
 	display: flex;
 	justify-content: center;
 	align-items: center;

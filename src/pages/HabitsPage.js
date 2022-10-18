@@ -55,7 +55,7 @@ const WrapperRow = styled(FlexWrapperRow)`
 		line-height: 29px;
 		user-select: none;
 	}
-	& > div {
+	& > button {
 		font-size: 27px;
 		line-height: 34px;
 		margin-right: 18px;

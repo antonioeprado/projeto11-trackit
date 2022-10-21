@@ -1,13 +1,17 @@
 import React from "react";
 import styled from "styled-components";
+
 import { FlexWrapperRow } from "../static/styles/Wrappers";
 import { compColor } from "../static/styles/Colors";
+import { LoginContext } from "../contexts/LoginContext";
 
 export default function Topbar() {
 	return (
 		<FlexWrapper>
 			<p>TrackIt</p>
-			<UserPic />
+			<LoginContext.Consumer>
+				{(value) => <UserPic src={value.image} />}
+			</LoginContext.Consumer>
 		</FlexWrapper>
 	);
 }

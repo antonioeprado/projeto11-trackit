@@ -1,13 +1,45 @@
 import React from "react";
 import styled from "styled-components";
-import { TodayButton } from "../static/styles/Buttons";
+
+import { CircularProgressbar, buildStyles } from "react-circular-progressbar";
 import { mainColor } from "../static/styles/Colors";
 
 export default function Footer() {
 	return (
 		<StyledFooter>
 			<FooterLinks>Hábitos</FooterLinks>
-			<TodayButton>Hoje</TodayButton>
+			<CircularProgressbar
+				value={50}
+				text={"Hoje"}
+				backgroundPadding={6}
+				styles={{
+					root: {
+						width: "91px",
+						height: "91px",
+						marginBottom: "35px",
+						fill: "#3e98c7",
+						borderRadius: "50% 50%",
+						textAnchor: "middle",
+					},
+					path: {
+						stroke: "#fff",
+						strokeLinecap: "butt",
+						// Customize transition animation
+						transition: "stroke-dashoffset 0.5s ease 0s",
+						// Rotate the path
+						transform: "rotate(0.25turn)",
+						transformOrigin: "center center",
+					},
+					trail: {
+						stroke: "transparent",
+					},
+					text: {
+						fill: "#fff",
+						fontSize: "18px",
+					},
+				}}
+				background
+			/>
 			<FooterLinks>Histórico</FooterLinks>
 		</StyledFooter>
 	);

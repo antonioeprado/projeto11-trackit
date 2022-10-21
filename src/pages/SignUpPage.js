@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import axios from "axios";
 import { useNavigate, Link } from "react-router-dom";
+import { ThreeDots } from "react-loader-spinner";
 
 import { SignButton } from "../static/styles/Buttons";
 import { FlexWrapperColumn, StyledForm } from "../static/styles/Wrappers";
@@ -11,6 +12,7 @@ import logo from "../static/media/imgs/Group_8.png";
 import HomePage from "./HomePage";
 
 export default function SignUpPage() {
+	const [sign, setSign] = useState(false);
 	const [form, setForm] = useState({
 		email: "",
 		name: "",
@@ -33,6 +35,7 @@ export default function SignUpPage() {
 	}
 
 	function signUp(e) {
+		setSign(true);
 		e.preventDefault();
 
 		const url =
@@ -43,7 +46,10 @@ export default function SignUpPage() {
 			console.log(res.data);
 			navigate("/");
 		});
-		promise.catch((err) => console.log(err.response.data));
+		promise.catch((err) => {
+			alert(err.response.data);
+			setSign(false);
+		});
 	}
 
 	return (
@@ -56,6 +62,7 @@ export default function SignUpPage() {
 					placeholder='email'
 					value={form.email}
 					onChange={handleForm}
+					disabled={sign}
 					required
 				/>
 				<StyledInput
@@ -64,6 +71,7 @@ export default function SignUpPage() {
 					placeholder='senha'
 					value={form.password}
 					onChange={handleForm}
+					disabled={sign}
 					required
 				/>
 				<StyledInput
@@ -72,6 +80,7 @@ export default function SignUpPage() {
 					placeholder='nome'
 					value={form.name}
 					onChange={handleForm}
+					disabled={sign}
 					required
 				/>
 				<StyledInput
@@ -80,9 +89,28 @@ export default function SignUpPage() {
 					placeholder='foto'
 					value={form.image}
 					onChange={handleForm}
+					disabled={sign}
 					required
 				/>
-				<SignButton type='submit'>Cadastrar</SignButton>
+				{sign ? (
+					<ThreeDots
+						ariaLabel='three-dots-loading'
+						color='#fff'
+						wrapperStyle={{
+							display: "flex",
+							width: "303px",
+							height: "45px",
+							borderRadius: "4.6px",
+							justifyContent: "center",
+							alignItems: "center",
+							backgroundColor: "#88ccfc",
+							cursor: "not-allowed",
+						}}
+						visible={true}
+					/>
+				) : (
+					<SignButton type='submit'>Entrar</SignButton>
+				)}
 			</StyledForm>
 			<SignUpLink>
 				<Link to='/'>Já tem uma conta? Faça login!</Link>

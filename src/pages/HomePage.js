@@ -1,17 +1,19 @@
-import React, { useState } from "react";
+import React, { createContext, useState } from "react";
 import styled from "styled-components";
 import axios from "axios";
 import { useNavigate, Link } from "react-router-dom";
+import { ThreeDots } from "react-loader-spinner";
 
 import { SignButton } from "../static/styles/Buttons";
 import { FlexWrapperColumn, StyledForm } from "../static/styles/Wrappers";
 import { mainColor } from "../static/styles/Colors";
 import { StyledInput } from "../static/styles/Input";
 import logo from "../static/media/imgs/Group_8.png";
-import SignUpPage from "./SignUpPage";
 
-export default function HomePage() {
+export default function HomePage(props) {
 	const [form, setForm] = useState({ email: "", password: "" });
+	const [login, setLogin] = useState(false);
+
 	const navigate = useNavigate();
 
 	function handleForm(e) {
@@ -23,6 +25,7 @@ export default function HomePage() {
 	}
 
 	function signIn(e) {
+		setLogin(true);
 		e.preventDefault();
 
 		const url =
@@ -31,9 +34,13 @@ export default function HomePage() {
 			.post(url, form)
 			.then((res) => {
 				console.log(res);
+				props.setLogin(res.data);
 				navigate("/habitos");
 			})
-			.catch((err) => console.log(err.response.data));
+			.catch((err) => {
+				alert(err.response.data);
+				setLogin(false);
+			});
 	}
 
 	return (
@@ -46,6 +53,7 @@ export default function HomePage() {
 					placeholder='email'
 					value={form.email}
 					onChange={handleForm}
+					disabled={login}
 					required
 				/>
 				<StyledInput
@@ -54,9 +62,28 @@ export default function HomePage() {
 					placeholder='senha'
 					value={form.password}
 					onChange={handleForm}
+					disabled={login}
 					required
 				/>
-				<SignButton type='submit'>Entrar</SignButton>
+				{login ? (
+					<ThreeDots
+						ariaLabel='three-dots-loading'
+						color='#fff'
+						wrapperStyle={{
+							display: "flex",
+							width: "303px",
+							height: "45px",
+							borderRadius: "4.6px",
+							justifyContent: "center",
+							alignItems: "center",
+							backgroundColor: "#88ccfc",
+							cursor: "not-allowed",
+						}}
+						visible={true}
+					/>
+				) : (
+					<SignButton type='submit'>Entrar</SignButton>
+				)}
 			</StyledForm>
 			<SignUpLink>
 				<Link to='/cadastro'>Não tem uma conta? Cadastre-se!</Link>

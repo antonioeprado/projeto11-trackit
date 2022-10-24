@@ -11,16 +11,20 @@ function TodayHabit(props) {
 
 	const [marked, setMarked] = useState("checkbox-outline");
 	const [color, setColor] = useState("#EBEBEB");
-	const [paragraphColor, setParagraphColor] = useState(textColor);
+	const [current, setCurrent] = useState(currentSequence);
+	const [sequenceColor, setSequenceColor] = useState(textColor);
+	const [recordColor, setRecordColor] = useState(textColor);
 	const [markDone, setMarkDone] = useState(done);
 
 	useEffect(() => {
 		if (done) {
 			setMarked("checkbox");
 			setColor(sucessColor);
+			setSequenceColor(sucessColor);
 		}
-		if (currentSequence === highestSequence) {
-			setParagraphColor(sucessColor);
+		if (currentSequence === highestSequence && currentSequence !== 0) {
+			setSequenceColor(sucessColor);
+			setRecordColor(sucessColor);
 		}
 	}, []);
 
@@ -34,14 +38,20 @@ function TodayHabit(props) {
 		if (!markDone) {
 			setMarked("checkbox");
 			setColor(sucessColor);
+			setSequenceColor(sucessColor);
+			setCurrent(current + 1);
 			setMarkDone(true);
+			props.setHabitDone(props.habitDone + 1);
 			axios(`${URLS.habit}/${id}/check`, config)
-				.then((res) => console.log(res.data))
+				.then((res) => console.log("Hábito concluido com sucesso!"))
 				.catch((err) => console.log(err));
 		} else {
 			setMarked("checkbox-outline");
 			setColor("#EBEBEB");
 			setMarkDone(false);
+			setCurrent(current - 1);
+			setSequenceColor(textColor);
+			props.setHabitDone(props.habitDone - 1);
 			axios(`${URLS.habit}/${id}/uncheck`, config)
 				.then((res) => console.log(res.data))
 				.catch((err) => console.log(err));
@@ -54,11 +64,11 @@ function TodayHabit(props) {
 				<p>{name}</p>
 				<p>
 					Sequência atual:{" "}
-					<span style={{ color: paragraphColor }}>{currentSequence} dias</span>
+					<span style={{ color: sequenceColor }}>{current} dias</span>
 				</p>
 				<p>
 					Seu recorde:{" "}
-					<span style={{ color: paragraphColor }}>{highestSequence} dias</span>
+					<span style={{ color: recordColor }}>{highestSequence} dias</span>
 				</p>
 			</WrapperColumn>
 			<ion-icon

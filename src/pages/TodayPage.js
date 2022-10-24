@@ -4,12 +4,18 @@ import styled from "styled-components";
 import Footer from "../components/Footer";
 import TodayHabit from "../components/TodayHabit";
 import Topbar from "../components/Topbar";
-import { backgroundColor, compColor } from "../static/styles/Colors";
+import { HabitsContext } from "../contexts/HabitsContext";
+import { compColor, sucessColor } from "../static/styles/Colors";
 import { FlexWrapperColumn } from "../static/styles/Wrappers";
 import { URLS } from "../URLS";
 
 function TodayPage(props) {
 	const [habits, setHabits] = useState([]);
+	const [habitsDone, setHabitsDone] = useState(0);
+
+	useEffect(() => {
+		props.setPercentage(habitsDone / habits.length);
+	}, [habitsDone, habits]);
 
 	useEffect(() => {
 		const config = {
@@ -20,8 +26,9 @@ function TodayPage(props) {
 
 		axios(`${URLS.habit}/today`, config)
 			.then((res) => {
-				console.log(res.data);
+				const d = res.data.filter((habit) => habit.done);
 				setHabits(res.data);
+				setHabitsDone(d.length);
 			})
 			.catch((err) => console.log(err));
 	}, []);
@@ -45,12 +52,24 @@ function TodayPage(props) {
 				<p>
 					{weekDays[dayOfWeek]}, {date.getDate()}/{date.getMonth("MM")}
 				</p>
-				<p>Nenhum hábito concluído ainda</p>
+				<HabitsContext.Consumer>
+					{(value) =>
+						value !== 0 ? (
+							<p style={{ color: sucessColor }}>
+								{value.toFixed(0)}% dos hábitos concluidos
+							</p>
+						) : (
+							<p>Nenhum hábito concluído ainda</p>
+						)
+					}
+				</HabitsContext.Consumer>
 				{habits.map((habit, index) => (
 					<TodayHabit
 						key={index}
 						habit={habit}
 						token={props.info.token}
+						setHabitDone={setHabitsDone}
+						habitDone={habitsDone}
 					/>
 				))}
 			</WrapperColumn>

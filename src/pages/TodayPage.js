@@ -49,17 +49,20 @@ function TodayPage(props) {
 		<>
 			<Topbar />
 			<WrapperColumn>
-				<p>
+				<p data-identifier='today-infos'>
 					{weekDays[dayOfWeek]}, {date.getDate()}/{date.getMonth("MM")}
 				</p>
 				<HabitsContext.Consumer>
 					{(value) =>
 						value !== 0 ? (
-							<p style={{ color: sucessColor }}>
+							<p
+								style={{ color: sucessColor }}
+								data-identifier='today-infos'
+							>
 								{value.toFixed(0)}% dos hábitos concluidos
 							</p>
 						) : (
-							<p>Nenhum hábito concluído ainda</p>
+							<p data-identifier='today-infos'>Nenhum hábito concluído ainda</p>
 						)
 					}
 				</HabitsContext.Consumer>

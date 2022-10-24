@@ -30,6 +30,7 @@ function SquaredDays(props) {
 			clicked={clicked}
 			mark={mark}
 			cursor={cursor}
+			data-identifier='week-day-btn'
 		>
 			{day}
 		</SquareDay>

@@ -50,7 +50,8 @@ function Habits(props) {
 				placeholder='nome do hábito'
 				value={form.name}
 				onChange={handleForm}
-				// disabled={login}
+				disabled={load}
+				data-identifier='input-habit-name'
 				required
 			/>
 			<Wrapper>
@@ -66,7 +67,10 @@ function Habits(props) {
 				))}
 			</Wrapper>
 			<WrapperButtons>
-				<CancelButton onClick={() => props.toggle(false)}>
+				<CancelButton
+					onClick={() => props.toggle(false)}
+					data-identifier='cancel-habit-create-btn'
+				>
 					Cancelar
 				</CancelButton>
 				{load ? (
@@ -87,7 +91,12 @@ function Habits(props) {
 						visible={true}
 					/>
 				) : (
-					<SaveButton type='submit'>Salvar</SaveButton>
+					<SaveButton
+						type='submit'
+						data-identifier='save-habit-create-btn'
+					>
+						Salvar
+					</SaveButton>
 				)}
 			</WrapperButtons>
 		</Form>

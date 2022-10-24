@@ -58,6 +58,7 @@ export default function SignUpPage() {
 					value={form.email}
 					onChange={handleForm}
 					disabled={sign}
+					data-identifier='input-email'
 					required
 				/>
 				<StyledInput
@@ -67,6 +68,7 @@ export default function SignUpPage() {
 					value={form.password}
 					onChange={handleForm}
 					disabled={sign}
+					data-identifier='input-password'
 					required
 				/>
 				<StyledInput
@@ -76,6 +78,7 @@ export default function SignUpPage() {
 					value={form.name}
 					onChange={handleForm}
 					disabled={sign}
+					data-identifier='input-name'
 					required
 				/>
 				<StyledInput
@@ -85,6 +88,7 @@ export default function SignUpPage() {
 					value={form.image}
 					onChange={handleForm}
 					disabled={sign}
+					data-identifier='input-photo'
 					required
 				/>
 				{sign ? (
@@ -107,7 +111,12 @@ export default function SignUpPage() {
 					<SignButton type='submit'>Entrar</SignButton>
 				)}
 			</StyledForm>
-			<SignUpLink href='/'>Já tem uma conta? Faça login!</SignUpLink>
+			<SignUpLink
+				href='/'
+				data-identifier='back-to-login-action'
+			>
+				Já tem uma conta? Faça login!
+			</SignUpLink>
 		</FlexWrapperColumn>
 	);
 }

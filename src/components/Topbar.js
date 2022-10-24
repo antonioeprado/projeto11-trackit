@@ -10,7 +10,12 @@ export default function Topbar() {
 		<FlexWrapper>
 			<p>TrackIt</p>
 			<LoginContext.Consumer>
-				{(value) => <UserPic src={value.image} />}
+				{(value) => (
+					<UserPic
+						src={value.image}
+						data-identifier='avatar'
+					/>
+				)}
 			</LoginContext.Consumer>
 		</FlexWrapper>
 	);

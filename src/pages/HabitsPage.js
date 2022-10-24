@@ -36,7 +36,12 @@ export default function HabitsPage(props) {
 			<WrapperColumn>
 				<WrapperRow>
 					<p>Meus hábitos</p>
-					<AddHabitButton onClick={() => setCreate(true)}>+</AddHabitButton>
+					<AddHabitButton
+						onClick={() => setCreate(true)}
+						data-identifier='create-habit-btn'
+					>
+						+
+					</AddHabitButton>
 				</WrapperRow>
 				<HabitsWrapper>
 					{create && (
@@ -58,7 +63,7 @@ export default function HabitsPage(props) {
 							/>
 						))
 					) : (
-						<p>
+						<p data-identifier='no-habit-message'>
 							Você não tem nenhum hábito cadastrado ainda. Adicione um hábito
 							para começar a trackear!
 						</p>

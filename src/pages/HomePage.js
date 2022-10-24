@@ -52,6 +52,7 @@ export default function HomePage(props) {
 					value={form.email}
 					onChange={handleForm}
 					disabled={login}
+					data-identifier='input-email'
 					required
 				/>
 				<StyledInput
@@ -61,6 +62,7 @@ export default function HomePage(props) {
 					value={form.password}
 					onChange={handleForm}
 					disabled={login}
+					data-identifier='input-password'
 					required
 				/>
 				{login ? (
@@ -80,10 +82,20 @@ export default function HomePage(props) {
 						visible={true}
 					/>
 				) : (
-					<SignButton type='submit'>Entrar</SignButton>
+					<SignButton
+						type='submit'
+						data-identifier='login-btn'
+					>
+						Entrar
+					</SignButton>
 				)}
 			</StyledForm>
-			<SignUpLink href='/cadastro'>Não tem uma conta? Cadastre-se!</SignUpLink>
+			<SignUpLink
+				href='/cadastro'
+				data-identifier='sign-up-action'
+			>
+				Não tem uma conta? Cadastre-se!
+			</SignUpLink>
 		</FlexWrapperColumn>
 	);
 }

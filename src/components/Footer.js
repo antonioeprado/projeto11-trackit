@@ -12,6 +12,7 @@ export default function Footer() {
 			<Link
 				to={"/habitos"}
 				style={{ textDecoration: "none" }}
+				data-identifier='habit-page-action'
 			>
 				<FooterLinks>Hábitos</FooterLinks>
 			</Link>
@@ -56,6 +57,7 @@ export default function Footer() {
 			<Link
 				to={"/historico"}
 				style={{ textDecoration: "none" }}
+				data-identifier='historic-page-action'
 			>
 				<FooterLinks>Histórico</FooterLinks>
 			</Link>

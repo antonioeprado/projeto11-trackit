@@ -31,7 +31,7 @@ function Habit(props) {
 	return (
 		<WrapperColumn>
 			<WrapperRow>
-				<p>{name}</p>
+				<p data-identifier='habit-name'>{name}</p>
 				<ion-icon
 					style={{
 						fontSize: "15px",
@@ -41,6 +41,7 @@ function Habit(props) {
 					}}
 					name='trash-outline'
 					onClick={handleClick}
+					data-identifier='delete-habit-btn'
 				></ion-icon>
 			</WrapperRow>
 			<SquaresWrapper>

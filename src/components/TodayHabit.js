@@ -60,7 +60,7 @@ function TodayHabit(props) {
 
 	return (
 		<WrapperRow>
-			<WrapperColumn>
+			<WrapperColumn data-identifier='today-infos'>
 				<p>{name}</p>
 				<p>
 					Sequência atual:{" "}
@@ -79,6 +79,7 @@ function TodayHabit(props) {
 					color: color,
 				}}
 				name={marked}
+				data-identifier='done-habit-btn'
 			></ion-icon>
 		</WrapperRow>
 	);

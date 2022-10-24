@@ -36,7 +36,7 @@ export default function HomePage(props) {
 				navigate("/habitos");
 			})
 			.catch((err) => {
-				alert(err.response.data);
+				alert(err.response.data.message);
 				setLogin(false);
 			});
 	}

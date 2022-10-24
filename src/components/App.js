@@ -10,6 +10,7 @@ import { LoginContext } from "../contexts/LoginContext";
 import TodayPage from "../pages/TodayPage";
 import { HabitsContext } from "../contexts/HabitsContext";
 import { URLS } from "../URLS";
+import HistoryPage from "../pages/HistoryPage";
 
 function App() {
 	const [loginInfo, setLoginInfo] = useState(null);
@@ -67,6 +68,19 @@ function App() {
 						<HabitsContext.Provider value={percentage * 100}>
 							<LoginContext.Provider value={loginInfo}>
 								<TodayPage
+									info={loginInfo}
+									setPercentage={setPercentage}
+								/>
+							</LoginContext.Provider>
+						</HabitsContext.Provider>
+					}
+				></Route>
+				<Route
+					path='/historico'
+					element={
+						<HabitsContext.Provider value={percentage * 100}>
+							<LoginContext.Provider value={loginInfo}>
+								<HistoryPage
 									info={loginInfo}
 									setPercentage={setPercentage}
 								/>

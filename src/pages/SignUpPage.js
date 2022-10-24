@@ -21,10 +21,6 @@ export default function SignUpPage() {
 		password: "",
 	});
 
-	useEffect(() => {
-		console.log(form);
-	}, [form]);
-
 	const navigate = useNavigate();
 
 	function handleForm(e) {

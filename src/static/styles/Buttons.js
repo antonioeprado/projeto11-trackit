@@ -5,7 +5,7 @@ const UnsetButton = styled.button`
 	all: unset;
 `;
 
-const Button = styled(UnsetButton)`
+export const Button = styled(UnsetButton)`
 	display: flex;
 	justify-content: center;
 	align-items: center;

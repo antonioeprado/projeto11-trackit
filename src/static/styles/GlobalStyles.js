@@ -1,4 +1,5 @@
 import { createGlobalStyle } from "styled-components";
+import { backgroundColor } from "./Colors";
 
 export const GlobalStyles = createGlobalStyle`
     /* http://meyerweb.com/eric/tools/css/reset/
@@ -37,6 +38,8 @@ footer, header, hgroup, menu, nav, section {
 }
 body {
 	line-height: 1;
+	padding-bottom: 70px;
+	background-color: ${backgroundColor}
 }
 ol, ul {
 	list-style: none;

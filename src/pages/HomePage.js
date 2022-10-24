@@ -1,13 +1,14 @@
-import React, { createContext, useState } from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import axios from "axios";
-import { useNavigate, Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { ThreeDots } from "react-loader-spinner";
 
 import { SignButton } from "../static/styles/Buttons";
 import { FlexWrapperColumn, StyledForm } from "../static/styles/Wrappers";
 import { mainColor } from "../static/styles/Colors";
 import { StyledInput } from "../static/styles/Input";
+import { URLS } from "../URLS";
 import logo from "../static/media/imgs/Group_8.png";
 
 export default function HomePage(props) {
@@ -28,12 +29,9 @@ export default function HomePage(props) {
 		setLogin(true);
 		e.preventDefault();
 
-		const url =
-			"https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/auth/login";
 		axios
-			.post(url, form)
+			.post(URLS.login, form)
 			.then((res) => {
-				console.log(res);
 				props.setLogin(res.data);
 				navigate("/habitos");
 			})
@@ -85,9 +83,7 @@ export default function HomePage(props) {
 					<SignButton type='submit'>Entrar</SignButton>
 				)}
 			</StyledForm>
-			<SignUpLink>
-				<Link to='/cadastro'>Não tem uma conta? Cadastre-se!</Link>
-			</SignUpLink>
+			<SignUpLink href='/cadastro'>Não tem uma conta? Cadastre-se!</SignUpLink>
 		</FlexWrapperColumn>
 	);
 }

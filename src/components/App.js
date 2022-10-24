@@ -4,9 +4,9 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 import HomePage from "../pages/HomePage";
 import SignUpPage from "../pages/SignUpPage";
-import logo from "../static/media/imgs/logo.svg";
 import HabitsPage from "../pages/HabitsPage";
 import { LoginContext } from "../contexts/LoginContext";
+import TodayPage from "../pages/TodayPage";
 
 function App() {
 	const [loginInfo, setLoginInfo] = useState({});
@@ -27,7 +27,15 @@ function App() {
 					path='/habitos'
 					element={
 						<LoginContext.Provider value={loginInfo}>
-							<HabitsPage />
+							<HabitsPage info={loginInfo} />
+						</LoginContext.Provider>
+					}
+				></Route>
+				<Route
+					path='/hoje'
+					element={
+						<LoginContext.Provider value={loginInfo}>
+							<TodayPage info={loginInfo} />
 						</LoginContext.Provider>
 					}
 				></Route>
